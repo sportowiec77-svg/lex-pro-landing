@@ -122,6 +122,44 @@ select {
   text-transform: uppercase;
 }
 
+
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 9px;
+  border: 1px solid rgba(197, 160, 89, 0.55);
+  border-radius: 10px;
+  background: rgba(197, 160, 89, 0.06);
+  color: var(--gold);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.menu-toggle.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 .main-nav {
   display: flex;
   align-items: center;
@@ -328,29 +366,37 @@ select {
   position: relative;
   display: inline-block;
   width: 100%;
-  max-width: 620px;
-  margin: 60px auto 0 auto;
-  filter: drop-shadow(0px 25px 25px rgba(0, 0, 0, 0.9));
+  max-width: 700px;
+  margin: 60px auto 0;
+  filter: drop-shadow(0 25px 25px rgba(0, 0, 0, 0.9));
 }
 
 .laptop-image {
+  position: relative;
+  z-index: 2;
   width: 100%;
   height: auto;
   display: block;
-  position: relative;
-  z-index: 2;
   pointer-events: none;
+  user-select: none;
 }
 
+/*
+ * laptop3.webp: 1672 x 941 px.
+ * Przezroczysty obszar ekranu: ok. x=260..1411, y=59..726.
+ * Wartości procentowe są liczone względem całej grafiki, więc skalują się
+ * razem z laptopem na desktopie, tablecie i mobile.
+ */
 .laptop-screen-overlay {
   position: absolute;
-  top: 8.5%;
-  left: 11%;
-  width: 73%;
-  height: 77%;
+  top: 6.27%;
+  left: 15.55%;
+  width: 68.90%;
+  height: 70.99%;
   z-index: 1;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 1.8% / 3.2%;
+  background: #000;
 }
 
 .hero-video {
@@ -359,6 +405,7 @@ select {
   display: block;
   object-fit: contain;
   object-position: center center;
+  background: #000;
 }
 
 .services {
@@ -739,14 +786,91 @@ select {
 
 @media (max-width: 820px) {
   .nav-bar {
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 20px 0;
+    position: relative;
+    min-height: 74px;
+    padding: 12px 0;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .brand {
+    flex: 1;
+  }
+
+  .brand-copy strong {
+    font-size: clamp(1.55rem, 6vw, 2rem);
+  }
+
+  .header-btn {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    flex: 0 0 auto;
+    position: relative;
+    z-index: 32;
   }
 
   .main-nav {
-    order: 3;
+    position: absolute;
+    top: calc(100% + 1px);
+    left: 0;
+    right: 0;
+    z-index: 30;
+    display: grid;
+    gap: 0;
     width: 100%;
+    padding: 8px 20px 18px;
+    background: rgba(8, 10, 13, 0.98);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.28);
+    box-shadow: 0 18px 34px rgba(0, 0, 0, 0.36);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+  }
+
+  .main-nav.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .main-nav a {
+    padding: 15px 4px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .main-nav a:last-child {
+    border-bottom: 0;
+  }
+
+  .main-nav a::after {
+    display: none;
+  }
+
+  .hero-copy {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .hero-copy p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-features {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .services-grid {
@@ -771,9 +895,27 @@ select {
     font-size: clamp(3.2rem, 15vw, 5.5rem);
   }
 
+  .hero-copy {
+    padding-top: 12px;
+    text-align: center;
+  }
+
+  .hero-copy h1 {
+    margin-inline: auto;
+  }
+
+  .hero-copy p {
+    max-width: 34rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .hero-actions {
     flex-direction: column;
     align-items: stretch;
+    width: min(100%, 360px);
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hero-actions .btn,

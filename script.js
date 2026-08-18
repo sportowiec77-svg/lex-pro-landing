@@ -32,3 +32,36 @@ const yearNode = document.getElementById('year');
 if (yearNode) {
   yearNode.textContent = new Date().getFullYear();
 }
+
+
+const menuToggle = document.querySelector('.menu-toggle');
+const mainNav = document.querySelector('.main-nav');
+
+if (menuToggle && mainNav) {
+  const closeMenu = () => {
+    menuToggle.classList.remove('is-open');
+    mainNav.classList.remove('is-open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Otwórz menu');
+  };
+
+  menuToggle.addEventListener('click', () => {
+    const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.classList.toggle('is-open', !isOpen);
+    mainNav.classList.toggle('is-open', !isOpen);
+    menuToggle.setAttribute('aria-expanded', String(!isOpen));
+    menuToggle.setAttribute('aria-label', isOpen ? 'Otwórz menu' : 'Zamknij menu');
+  });
+
+  mainNav.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 820) closeMenu();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
+}
