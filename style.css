@@ -873,6 +873,18 @@ select {
     margin-right: auto;
   }
 
+  /* Mobile: laptop closer to the hero content instead of sitting at the bottom
+     of the desktop-height visual column. */
+  .hero-visual {
+    min-height: 0;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .laptop-wrapper {
+    margin-top: 20px;
+  }
+
   .services-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
