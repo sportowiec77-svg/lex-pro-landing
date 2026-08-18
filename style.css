@@ -344,10 +344,10 @@ select {
 
 .laptop-screen-overlay {
   position: absolute;
-  top: 9.5%;
-  left: 12.5%;
-  width: 75%;
-  height: 72%;
+  top: 8.5%;
+  left: 11%;
+  width: 73%;
+  height: 77%;
   z-index: 1;
   overflow: hidden;
   border-radius: 8px;
