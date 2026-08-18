@@ -326,9 +326,7 @@ select {
 
 .laptop-wrapper {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: inline-block;
   width: 100%;
   max-width: 620px;
   margin: 60px auto 0 auto;
@@ -340,7 +338,7 @@ select {
   height: auto;
   display: block;
   position: relative;
-  z-index: 3;
+  z-index: 2;
   pointer-events: none;
 }
 
@@ -350,21 +348,32 @@ select {
   left: 12.5%;
   width: 75%;
   height: 72%;
-  z-index: 2;
+  z-index: 1;
   overflow: hidden;
+  border-radius: 8px;
   background: transparent !important;
 }
 
 .hero-video {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  top: 10%;
+  left: 17.5%;
+  width: 65%;
+  height: 52%;
+  object-fit: contain;
+  object-position: center center;
   display: block;
   z-index: 1;
+  border-radius: 6px;
   background: transparent !important;
+}
+
+.laptop-screen video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  display: block;
 }
 
 .services {
